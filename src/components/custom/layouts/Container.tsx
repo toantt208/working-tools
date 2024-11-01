@@ -1,18 +1,18 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import View from "./View";
-import {Home, LineChart, Package, ShoppingCart, Users} from "lucide-react";
+import { Home, LineChart, Package, ShoppingCart, Users } from "lucide-react";
 
 export type NavItem = {
   title: string;
   icon: React.ElementType;
   href: string;
-}
+};
 
 const NAV_ITEMS: NavItem[] = [
   {
-    title: "Dashboard",
+    title: "JWT Decoder",
     icon: Home,
-    href: "#",
+    href: "/jwt-decoder",
   },
   {
     title: "Orders",
@@ -42,19 +42,19 @@ export default function Container({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (searchKey) {
-      setNavItems((prev) => prev.filter((item) => item.title.toLowerCase().includes(searchKey.toLowerCase())));
+      setNavItems((prev) =>
+        prev.filter((item) =>
+          item.title.toLowerCase().includes(searchKey.toLowerCase()),
+        ),
+      );
     } else {
       setNavItems(NAV_ITEMS);
     }
   }, [searchKey]);
 
   return (
-    <View
-      searchKey={searchKey}
-      setSearchKey={setSearchKey}
-      navItems={navItems}
-    >
+    <View searchKey={searchKey} setSearchKey={setSearchKey} navItems={navItems}>
       {children}
     </View>
-  )
+  );
 }
